@@ -1,0 +1,4 @@
+*
+!Dockerfile
+!.cache/
+!.cache/minio-source.tar.gz

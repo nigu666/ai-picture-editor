@@ -1,0 +1,126 @@
+# 本机安装专用；不与原开发编排合并。宿主机仅开放回环端口。
+x-app: &app
+  image: ai-picture-editor-app:local-20261025
+  pull_policy: never
+  platform: linux/amd64
+  restart: unless-stopped
+  stop_grace_period: 45s
+  environment: &app-env
+    APP_ENV: development
+    API_PORT: "7302"
+    CONTAINER_INSTALL_ID: ${INSTALL_ID:?请先运行安装入口}
+    DATABASE_URL: postgresql+asyncpg://picturelocal:${LOCAL_PG_PASSWORD:?}@postgres:5432/ai_picture_local
+    REDIS_URL: redis://redis:6379/0
+    QUEUE_NAME: picture-local:queue
+    JWT_SECRET: ${LOCAL_JWT_SECRET:?}
+    S3_ENDPOINT: http://minio:9000
+    S3_PUBLIC_ENDPOINT: http://127.0.0.1:${LOCAL_S3_PORT:?}
+    S3_ACCESS_KEY: picturelocal
+    S3_SECRET_KEY: ${LOCAL_S3_PASSWORD:?}
+    S3_BUCKET: picture-local
+    IMAGE_PROVIDER: ${IMAGE_PROVIDER:-mock}
+    IMAGE_MODEL: wan2.6-t2i
+    REFERENCE_GENERATION_ENABLED: ${REFERENCE_GENERATION_ENABLED:-false}
+    REFERENCE_IMAGE_MODEL: qwen-image-2.0-pro
+    PLANNER_PROVIDER: dashscope
+    PLANNER_MODEL: ${PLANNER_MODEL:-qwen3.6-flash}
+    PLANNER_TIMEOUT_SECONDS: "90"
+    PLANNER_VISION_ENABLED: "true"
+    DASHSCOPE_API_KEY: ${DASHSCOPE_API_KEY:-}
+    DASHSCOPE_BASE_URL: https://dashscope.aliyuncs.com
+    ZHIPU_API_KEY: ""
+    BACKGROUND_PROVIDER: ${BACKGROUND_PROVIDER:-disabled}
+    OUTPAINTING_PROVIDER: ${OUTPAINTING_PROVIDER:-disabled}
+    UPSCALING_PROVIDER: ${UPSCALING_PROVIDER:-disabled}
+    REGION_PROVIDER: ${REGION_PROVIDER:-disabled}
+    BACKGROUND_REPAIR_BACKEND: lama
+    OCR_PROVIDER: rapidocr
+  volumes:
+    - type: bind
+      source: ./models
+      target: /models
+      read_only: true
+      bind: {create_host_path: false}
+
+services:
+  postgres:
+    image: ai-picture-editor-postgres:local-20261025
+    platform: linux/amd64
+    pull_policy: never
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: picturelocal
+      POSTGRES_PASSWORD: ${LOCAL_PG_PASSWORD:?}
+      POSTGRES_DB: ai_picture_local
+    volumes: [pg_data:/var/lib/postgresql/data]
+    healthcheck:
+      test: [CMD-SHELL, "pg_isready -U picturelocal -d ai_picture_local"]
+      interval: 3s
+      timeout: 3s
+      retries: 30
+  redis:
+    image: ai-picture-editor-redis:local-20261025
+    platform: linux/amd64
+    pull_policy: never
+    restart: unless-stopped
+    command: [redis-server, --appendonly, "yes"]
+    volumes: [redis_data:/data]
+    healthcheck:
+      test: [CMD, redis-cli, ping]
+      interval: 3s
+      timeout: 3s
+      retries: 30
+  minio:
+    image: ai-picture-editor-minio:local-20261025
+    platform: linux/amd64
+    pull_policy: never
+    restart: unless-stopped
+    command: [server, /data, --console-address, ":9001"]
+    environment:
+      MINIO_ROOT_USER: picturelocal
+      MINIO_ROOT_PASSWORD: ${LOCAL_S3_PASSWORD:?}
+    ports:
+      - "127.0.0.1:${LOCAL_S3_PORT:?}:9000"
+      - "127.0.0.1:${LOCAL_CONSOLE_PORT:?}:9001"
+    volumes: [minio_data:/data]
+    healthcheck:
+      test: [CMD, curl, -fsS, http://127.0.0.1:9000/minio/health/live]
+      interval: 3s
+      timeout: 3s
+      retries: 30
+  initialize:
+    <<: *app
+    restart: "no"
+    command: [migrate, --initialize-local]
+    depends_on:
+      postgres: {condition: service_healthy}
+      redis: {condition: service_healthy}
+      minio: {condition: service_healthy}
+  api:
+    <<: *app
+    command: [api]
+    ports: ["127.0.0.1:${LOCAL_APP_PORT:?}:7302"]
+    depends_on:
+      initialize: {condition: service_completed_successfully}
+    healthcheck:
+      test: [CMD, python, -m, app.container_health, api]
+      interval: 4s
+      timeout: 5s
+      retries: 30
+      start_period: 15s
+  worker:
+    <<: *app
+    command: [worker]
+    depends_on:
+      initialize: {condition: service_completed_successfully}
+    healthcheck:
+      test: [CMD, python, -m, app.container_health, worker]
+      interval: 4s
+      timeout: 5s
+      retries: 30
+      start_period: 15s
+
+volumes:
+  pg_data: {}
+  redis_data: {}
+  minio_data: {}

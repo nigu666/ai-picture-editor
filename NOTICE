@@ -1,0 +1,13 @@
+AI Picture Editor / AI 修图智能体
+Copyright (c) 2026 nigu666
+
+本仓库自行编写的应用实现、中文工作台交互和本机安装编排采用 MIT 许可证。
+再分发这些部分时，请保留 LICENSE 中的版权与许可声明。
+
+学习与功能设计参考：编程导航 AI 修图智能体教程，作者 yuyuanweb。
+参考项目：https://github.com/yuyuanweb/ai-picture-editor
+本仓库不分发课程正文、课程附件或上游项目源码归档。
+
+React、FastAPI、Konva、LangGraph、MinIO、Redis、PostgreSQL、模型权重等
+第三方组成分别保留原作者版权及各自授权，不属于上述原创署名范围。
+第三方说明与随包许可见 THIRD_PARTY_NOTICES.md 和 third_party/。

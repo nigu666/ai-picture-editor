@@ -1,0 +1,26 @@
+[
+  {
+    "path": "deployment/local/models/u2netp/u2netp.onnx",
+    "sha256": "309c8469258dda742793dce0ebea8e6dd393174f89934733ecc8b14c76f4ddd8",
+    "bytes": 4574861,
+    "url": "https://github.com/danielgatis/rembg/releases/download/v0.0.0/u2netp.onnx"
+  },
+  {
+    "path": "deployment/local/models/sam/sam_vit_b_01ec64.encoder.quant.onnx",
+    "sha256": "181301ce3500a86c38450b56e2b71dab8008a13b1812a0d6cc812f22651e143a",
+    "bytes": 108836115,
+    "url": "https://github.com/danielgatis/rembg/releases/download/v0.0.0/sam_vit_b_01ec64.encoder.quant.onnx"
+  },
+  {
+    "path": "deployment/local/models/sam/sam_vit_b_01ec64.decoder.quant.onnx",
+    "sha256": "b11465135b7c93a1fd65141a4e2a96f1ddf2e3dab09b5eeab640bdf5f10aadbe",
+    "bytes": 8755366,
+    "url": "https://github.com/danielgatis/rembg/releases/download/v0.0.0/sam_vit_b_01ec64.decoder.quant.onnx"
+  },
+  {
+    "path": "deployment/local/models/lama/lama_fp32.onnx",
+    "sha256": "1faef5301d78db7dda502fe59966957ec4b79dd64e16f03ed96913c7a4eb68d6",
+    "bytes": 208044816,
+    "url": "https://huggingface.co/Carve/LaMa-ONNX/resolve/c3c0c9e468934d62e79c329e35d82dd09ff8c444/lama_fp32.onnx"
+  }
+]

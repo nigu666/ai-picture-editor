@@ -1,0 +1,92 @@
+[
+  {
+    "package": "@tanstack/query-core",
+    "version": "5.102.4",
+    "license": "MIT"
+  },
+  {
+    "package": "@tanstack/react-query",
+    "version": "5.102.4",
+    "license": "MIT"
+  },
+  {
+    "package": "@types/react",
+    "version": "19.2.18",
+    "license": "MIT"
+  },
+  {
+    "package": "@types/react-reconciler",
+    "version": "0.33.0",
+    "license": "MIT"
+  },
+  {
+    "package": "cookie",
+    "version": "1.1.1",
+    "license": "MIT"
+  },
+  {
+    "package": "csstype",
+    "version": "3.2.3",
+    "license": "MIT"
+  },
+  {
+    "package": "its-fine",
+    "version": "2.0.0",
+    "license": "MIT"
+  },
+  {
+    "package": "its-fine/node_modules/@types/react-reconciler",
+    "version": "0.28.9",
+    "license": "MIT"
+  },
+  {
+    "package": "konva",
+    "version": "10.3.1",
+    "license": "MIT"
+  },
+  {
+    "package": "react",
+    "version": "19.2.8",
+    "license": "MIT"
+  },
+  {
+    "package": "react-dom",
+    "version": "19.2.8",
+    "license": "MIT"
+  },
+  {
+    "package": "react-konva",
+    "version": "19.2.5",
+    "license": "MIT"
+  },
+  {
+    "package": "react-reconciler",
+    "version": "0.33.0",
+    "license": "MIT"
+  },
+  {
+    "package": "react-router",
+    "version": "7.18.2",
+    "license": "MIT"
+  },
+  {
+    "package": "react-router-dom",
+    "version": "7.18.2",
+    "license": "MIT"
+  },
+  {
+    "package": "scheduler",
+    "version": "0.27.0",
+    "license": "MIT"
+  },
+  {
+    "package": "set-cookie-parser",
+    "version": "2.7.2",
+    "license": "MIT"
+  },
+  {
+    "package": "zustand",
+    "version": "5.0.15",
+    "license": "MIT"
+  }
+]
