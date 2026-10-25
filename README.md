@@ -2,7 +2,11 @@
 
 中文 AI 修图工作台，提供轻玻璃悬浮画布、本地图片编辑、图层操作和按需启用的 AI 功能。
 
-[下载本机安装包](https://github.com/nigu666/ai-picture-editor/releases/latest) · [安装说明](deployment/local/安装说明.md) · [MIT 许可证](LICENSE)
+[下载本机安装包](https://github.com/nigu666/ai-picture-editor/releases/latest) · [安装说明](deployment/local/安装说明.md) · [项目作品集与开发过程](https://nigu666.github.io/ai-application-engineer-portfolio/#picture-editor) · [MIT 许可证](LICENSE)
+
+![中文修图工作台：悬浮画布、编辑工具与图层面板](docs/images/workbench.png)
+
+上传图片 → 在画布中编辑 → 查看并确认 AI 计划 → 预览候选 → 采用与导出。
 
 ## 功能
 
@@ -52,6 +56,8 @@ Redis 队列 ─── Worker（异步任务）
 维护者与本仓库自行实现部分署名：**[nigu666](https://github.com/nigu666)**。
 
 本项目是基于教程思路持续实现和迭代的学习实践。学习与功能设计参考 [编程导航 AI 修图智能体项目](https://github.com/yuyuanweb/ai-picture-editor)，不附带课程正文或课程附件。
+
+项目通过 AI 协作推进实现；维护者参与需求取舍、模型方案选择、界面反馈与功能验收。实现记录与个人熟练程度分别说明，开发过程与职责边界见[作品集](https://nigu666.github.io/ai-application-engineer-portfolio/#picture-process)。
 
 本仓库自行编写的应用实现、中文界面交互和本机安装编排采用 **MIT License**。再分发这些部分时请保留版权与许可声明。
 
