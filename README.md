@@ -8,6 +8,12 @@
 
 上传图片 → 在画布中编辑 → 查看并确认 AI 计划 → 预览候选 → 采用与导出。
 
+## 版本与运行图解
+
+当前安装包为 **[v0.1.0](https://github.com/nigu666/ai-picture-editor/releases/tag/v0.1.0)**（2026-10-25）。2026-10-31 更新了仓库介绍与作品集入口，安装包和镜像未变更。
+
+[作品集中的修图案例](https://nigu666.github.io/ai-application-engineer-portfolio/?project=picture#picture-editor)按读取画布、规划工具、人工确认、执行编辑、采用与导出五步展示运行截图，并可拖动比较同一次水平翻转的执行前后画面。此示例验证本地编辑链路，不作为云端生图效果的证据。作品集的日期版本与本应用版本分别维护。
+
 ## 功能
 
 - 素材上传、会话管理、编辑历史与 PNG/JPEG 导出。
@@ -57,7 +63,7 @@ Redis 队列 ─── Worker（异步任务）
 
 本项目是基于教程思路持续实现和迭代的学习实践。学习与功能设计参考 [编程导航 AI 修图智能体项目](https://github.com/yuyuanweb/ai-picture-editor)，不附带课程正文或课程附件。
 
-项目通过 AI 协作推进实现；维护者参与需求取舍、模型方案选择、界面反馈与功能验收。实现记录与个人熟练程度分别说明，开发过程与职责边界见[作品集](https://nigu666.github.io/ai-application-engineer-portfolio/#picture-process)。
+项目通过 AI 协作推进实现；维护者参与需求取舍、模型方案选择、界面反馈与功能验收。实现记录与个人熟练程度分别说明，开发过程与职责边界见[作品集](https://nigu666.github.io/ai-application-engineer-portfolio/?project=picture#picture-editor)。
 
 本仓库自行编写的应用实现、中文界面交互和本机安装编排采用 **MIT License**。再分发这些部分时请保留版权与许可声明。
 
